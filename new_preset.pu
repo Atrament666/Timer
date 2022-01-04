@@ -1,0 +1,30 @@
+@startuml
+title Add new preset
+actor user
+
+activate presetManagerAction
+user -> presetManagerAction: actionPeformed()
+presetManagerAction -> presetManagerDialog: setVisible()
+
+activate presetManagerDialog
+presetManagerDialog -> JOptionPane : show()
+activate JOptionPane
+user -> JOptionPane : enter details
+return string
+
+presetManagerDialog -> Preset**:  fromString()
+activate Preset
+return preset
+
+presetManagerDialog -> presetManager: addPreset()
+activate presetManager
+presetManager -> TableModel: fireTableChanged()
+
+activate TableModel
+TableModel -> JTable: <<notifies>>
+return tableModel updated
+
+presetManager --> presetManagerDialog:
+deactivate presetManager
+deactivate presetManagerDialog
+@enduml

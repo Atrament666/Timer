@@ -1,0 +1,21 @@
+@startuml
+class MainWindow implements ApplicationContextAware
+class OptionsDialog extends JDialog
+class PresetManagerDialog extends JDialog
+class Preset
+interface ApplicationContextAware
+
+class PresetManager {
+     +void addPreset()
+     -List<Preset> presets
+     +getPresets()
+}
+
+MainWindow -left> OptionsDialog
+MainWindow -> PresetManagerDialog
+PresetManagerDialog  -> "1" PresetManager
+PresetManager  -> "*" Preset
+Preset <<creates>>
+@enduml
+
+
