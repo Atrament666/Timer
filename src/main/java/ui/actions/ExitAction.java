@@ -17,8 +17,11 @@ public class ExitAction extends ManagedAction {
 
     public ExitAction(MainWindow mw) {
         super(mw);
-        putValue(NAME, "Exit");
+        initComponent();
+    }
 
+    private void initComponent() {
+        putValue(NAME, "Exit");
     }
 
     @Override
