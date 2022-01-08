@@ -8,17 +8,14 @@ import core.Preset;
 import core.PresetManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Calendar;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle;
-import javax.swing.WindowConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -34,7 +31,6 @@ public class PresetManagerDialog extends javax.swing.JDialog {
     /**
      * Creates new form PresetManagerDialog
      */
-    @Autowired
     public PresetManagerDialog(PresetManager presetManager) {
         super();
         this.presetManager = presetManager;

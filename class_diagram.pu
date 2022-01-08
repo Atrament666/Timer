@@ -1,9 +1,8 @@
 @startuml
-class MainWindow implements ApplicationContextAware
-class OptionsDialog extends JDialog
-class PresetManagerDialog extends JDialog
+class MainWindow 
+class OptionsDialog 
+class PresetManagerDialog
 class Preset
-interface ApplicationContextAware
 
 class PresetManager {
      +void addPreset()

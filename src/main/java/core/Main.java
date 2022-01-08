@@ -15,9 +15,8 @@
  */
 package core;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.SwingUtilities;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import ui.MainWindow;
 
 /**
@@ -27,12 +26,11 @@ import ui.MainWindow;
 public class Main {
 
     public static void main(String[] args) {
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
-        MainWindow frame = ctx.getBean(MainWindow.class);
-        frame.getAppState().setCurrentState(ApplicationState.State.STOPPED);
+        PresetManager pm = new PresetManager();
+        FlatDarkLaf.setup();
+        MainWindow mw = new MainWindow(pm);
         SwingUtilities.invokeLater(() -> {
-            frame.setVisible(true);
-
+            mw.setVisible(true);
         });
 
     }

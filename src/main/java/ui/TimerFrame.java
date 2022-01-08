@@ -16,13 +16,11 @@
 package ui;
 
 import core.Preset;
-import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Atrament
  */
-@Component
 public interface TimerFrame {
 
     void startTimer();

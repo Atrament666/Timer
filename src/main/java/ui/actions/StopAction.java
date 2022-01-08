@@ -15,34 +15,27 @@
  */
 package ui.actions;
 
-import core.ApplicationState;
 import java.awt.event.ActionEvent;
-import org.springframework.stereotype.Component;
+import ui.MainWindow;
 
 /**
  *
  * @author Atrament
  */
-@Component
-public class StopAction extends StateAwareAction{
+public class StopAction extends MainWindowAction {
 
-    public StopAction() {
+    public StopAction(MainWindow mw) {
+        super(mw);
         initComponent();
     }
 
     private void initComponent() {
-        addEnabledState(ApplicationState.State.RUNNING);
         putValue(NAME, "Stop");
     }
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        super.actionPerformed(arg0);
-        getFrame().stopTimer();
+        ((MainWindow)mainWindow).stopTimer();
     }
-    
-    
-    
-    
-    
+
 }

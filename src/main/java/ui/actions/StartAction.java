@@ -15,36 +15,28 @@
  */
 package ui.actions;
 
-import core.ApplicationState;
+
 import java.awt.event.ActionEvent;
-import org.springframework.stereotype.Component;
+import ui.MainWindow;
 
 /**
  *
  * @author Atrament
  */
-@Component
-public class StartAction extends StateAwareAction {
+public class StartAction extends MainWindowAction {
 
-    @Override
-    public boolean accept(Object sender) {
-        return super.accept(sender);
-    }
-
-    public StartAction() {
-        super();
+    public StartAction(MainWindow mw) {
+        super(mw);
         initComponent();
     }
 
     private void initComponent() {
-        addEnabledState(ApplicationState.State.STOPPED);
-        addEnabledState(ApplicationState.State.SET);
         putValue(NAME, "Start");
     }
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        getFrame().startTimer();
+        ((MainWindow)mainWindow).startTimer();
     }
 
 }

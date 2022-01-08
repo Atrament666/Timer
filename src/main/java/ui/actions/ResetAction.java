@@ -15,21 +15,19 @@
  */
 package ui.actions;
 
-import core.ApplicationState;
 import core.Preset;
 import java.awt.event.ActionEvent;
-import org.springframework.stereotype.Component;
+import static javax.swing.Action.NAME;
+import ui.MainWindow;
 
 /**
  *
  * @author Atrament
  */
-@Component
-public class ResetAction extends StateAwareAction {
-
-    public ResetAction() {
-        super();
-        addEnabledState(ApplicationState.State.STOPPED);
+public class ResetAction extends MainWindowAction {
+    
+    public ResetAction(MainWindow mw) {
+        super(mw);
         initComponent();
     }
 
@@ -39,8 +37,8 @@ public class ResetAction extends StateAwareAction {
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        super.actionPerformed(arg0);
-        getFrame().setSpinners(new Preset(null,0,0,0));
+        ((MainWindow)mainWindow).setSpinners(new Preset(null,0,0,0));
+        mainWindow.setTitle("Timer");
     }
 
 }

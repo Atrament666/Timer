@@ -38,7 +38,7 @@ public class MySpinner extends JSpinner {
     private void initComponents() {
         setModel(new MySpinnerNumberModel(0, 0, maxValue, 1));
         setEditor(new JSpinner.NumberEditor(this, "00"));
-        setFont(new Font("Tahoma", Font.BOLD, 32));
+        setFont(new Font("Tahoma", Font.BOLD, 24));
        
     }
 

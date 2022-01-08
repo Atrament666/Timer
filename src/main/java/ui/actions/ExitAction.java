@@ -5,16 +5,17 @@
 package ui.actions;
 
 import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
 import static javax.swing.Action.NAME;
+import ui.MainWindow;
 
 /**
  *
  * @author Atrament
  */
-public class ExitAction extends AbstractAction{
+public class ExitAction extends MainWindowAction{
 
-    public ExitAction() {
+    public ExitAction(MainWindow mw) {
+        super(mw);
         putValue(NAME, "Exit");
         
     }
