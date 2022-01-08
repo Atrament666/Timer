@@ -126,6 +126,7 @@ public class PresetManager {
 
     public final void loadPresets() {
         log.debug("Loading presets");
+        presets.clear();
         try {
             List<String> lines = Files.readAllLines(file);
             for (var l : lines) {
