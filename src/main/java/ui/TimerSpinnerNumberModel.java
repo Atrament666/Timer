@@ -21,11 +21,11 @@ import javax.swing.SpinnerNumberModel;
  *
  * @author Atrament
  */
-public class MySpinnerNumberModel extends SpinnerNumberModel {
+public class TimerSpinnerNumberModel extends SpinnerNumberModel {
 
     private SpinnerNumberModel linkedModel;
 
-    public MySpinnerNumberModel(int value, int minimum, int maximum, int stepSize) {
+    public TimerSpinnerNumberModel(int value, int minimum, int maximum, int stepSize) {
         super(value, minimum, maximum, stepSize);
     }
 

@@ -75,7 +75,7 @@ public class MainWindow extends JFrame implements TimerFrame {
     private Timer timer;
     private TimeDirection timeDirection; //
     private JMenuBar menuBar;
-    private MySpinner hourSpinner, minuteSpinner, secondSpinner;
+    private TimerSpinner hourSpinner, minuteSpinner, secondSpinner;
     private final ActionManager<ManagedAction, MainWindow> actionManager;
     private final PresetManager presetManager;
 
@@ -114,15 +114,15 @@ public class MainWindow extends JFrame implements TimerFrame {
 
         actionManager.setMainWindow(this);
 
-        hourSpinner = new MySpinner(23);
-        minuteSpinner = new MySpinner(59);
-        secondSpinner = new MySpinner(59);
+        hourSpinner = new TimerSpinner(23);
+        minuteSpinner = new TimerSpinner(59);
+        secondSpinner = new TimerSpinner(59);
         secondSpinner.setLinkedSpinner(minuteSpinner);
         minuteSpinner.setLinkedSpinner(hourSpinner);
 
-        add(new MySpinLabel("Hours"));
-        add(new MySpinLabel("Minutes"));
-        add(new MySpinLabel("Seconds"), "wrap");
+        add(new TimerSpinLabel("Hours"));
+        add(new TimerSpinLabel("Minutes"));
+        add(new TimerSpinLabel("Seconds"), "wrap");
 
         add(hourSpinner, "growx, growy");
         add(minuteSpinner, "growx, growy");

@@ -25,25 +25,25 @@ import org.slf4j.LoggerFactory;
  *
  * @author Atrament
  */
-public class MySpinner extends JSpinner {
+public class TimerSpinner extends JSpinner {
 
     private final int maxValue;
 
-    public MySpinner(int maxValue) {
+    public TimerSpinner(int maxValue) {
         super();
         this.maxValue = maxValue;
         initComponents();
     }
 
     private void initComponents() {
-        setModel(new MySpinnerNumberModel(0, 0, maxValue, 1));
+        setModel(new TimerSpinnerNumberModel(0, 0, maxValue, 1));
         setEditor(new JSpinner.NumberEditor(this, "00"));
         setFont(new Font("Tahoma", Font.BOLD, 24));
        
     }
 
-    public void setLinkedSpinner(MySpinner other) {
-        ((MySpinnerNumberModel) getModel()).setLinkedModel(((MySpinnerNumberModel) other.getModel()));
+    public void setLinkedSpinner(TimerSpinner other) {
+        ((TimerSpinnerNumberModel) getModel()).setLinkedModel(((TimerSpinnerNumberModel) other.getModel()));
     }
     
     public void tickDown() {

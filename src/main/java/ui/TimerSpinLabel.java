@@ -22,10 +22,10 @@ import javax.swing.JLabel;
  *
  * @author Atrament
  */
-public class MySpinLabel extends JLabel
+public class TimerSpinLabel extends JLabel
 {
 
-    public MySpinLabel(String label)
+    public TimerSpinLabel(String label)
     {
         super(label);
         initComponent();
