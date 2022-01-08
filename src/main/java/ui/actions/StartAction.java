@@ -17,13 +17,15 @@ package ui.actions;
 
 
 import java.awt.event.ActionEvent;
+import static javax.swing.Action.NAME;
+import org.atrament.ManagedAction;
 import ui.MainWindow;
 
 /**
  *
  * @author Atrament
  */
-public class StartAction extends MainWindowAction {
+public class StartAction extends ManagedAction {
 
     public StartAction(MainWindow mw) {
         super(mw);

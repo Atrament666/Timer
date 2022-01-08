@@ -6,25 +6,24 @@ package ui.actions;
 
 import java.awt.event.ActionEvent;
 import static javax.swing.Action.NAME;
+import org.atrament.ManagedAction;
 import ui.MainWindow;
 
 /**
  *
  * @author Atrament
  */
-public class ExitAction extends MainWindowAction{
+public class ExitAction extends ManagedAction {
 
     public ExitAction(MainWindow mw) {
         super(mw);
         putValue(NAME, "Exit");
-        
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         System.exit(0);
     }
-    
-    
-    
+
 }

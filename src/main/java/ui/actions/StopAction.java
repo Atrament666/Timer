@@ -16,13 +16,15 @@
 package ui.actions;
 
 import java.awt.event.ActionEvent;
+import static javax.swing.Action.NAME;
+import org.atrament.ManagedAction;
 import ui.MainWindow;
 
 /**
  *
  * @author Atrament
  */
-public class StopAction extends MainWindowAction {
+public class StopAction extends ManagedAction {
 
     public StopAction(MainWindow mw) {
         super(mw);
