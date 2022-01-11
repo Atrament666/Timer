@@ -28,5 +28,7 @@ public interface TimerFrame {
     void stopTimer();
 
     void setSpinners(Preset preset);
+    
+    void resetSpinners();
 
 }

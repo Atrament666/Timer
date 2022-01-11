@@ -15,7 +15,6 @@
  */
 package ui.actions;
 
-import core.Preset;
 import java.awt.event.ActionEvent;
 import static javax.swing.Action.NAME;
 import org.atrament.ManagedAction;
@@ -26,7 +25,7 @@ import ui.MainWindow;
  * @author Atrament
  */
 public class ResetAction extends ManagedAction {
-    
+
     public ResetAction(MainWindow mw) {
         super(mw);
         initComponent();
@@ -38,8 +37,7 @@ public class ResetAction extends ManagedAction {
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        ((MainWindow)mainWindow).setSpinners(new Preset(null,0,0,0));
-        mainWindow.setTitle("Timer");
+        ((MainWindow) mainWindow).resetSpinners();
     }
 
 }

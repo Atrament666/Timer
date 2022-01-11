@@ -67,6 +67,7 @@ import ui.actions.StopAction;
 public class MainWindow extends JFrame implements TimerFrame {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass().getName());
+    private static final String ICON_FILE = "/images/icon.png";
 
     public static enum TimeDirection {
         DOWN, UP
@@ -88,8 +89,6 @@ public class MainWindow extends JFrame implements TimerFrame {
 
     private void initComponents() {
         try {
-
-            //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (UnsupportedLookAndFeelException e) {
             log.debug(e.getMessage());
@@ -97,19 +96,18 @@ public class MainWindow extends JFrame implements TimerFrame {
         timer = new Timer(1000, taskPerformer);
         setLayout(new MigLayout("", "[70px][70px][70px]", "[][70px][]"));
         setTitle("Timer");
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/icon-16.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource(ICON_FILE)));
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                super.windowClosing(e); //To change body of generated methods, choose Tools | Templates.
+                super.windowClosing(e); 
                 setExtendedState(JFrame.ICONIFIED);
             }
 
         });
         setMenu();
-        //setSysTray();
         setDorkBox();
 
         actionManager.setMainWindow(this);
@@ -154,9 +152,10 @@ public class MainWindow extends JFrame implements TimerFrame {
             PresetManagerDialog pmd = new PresetManagerDialog(presetManager);
             pmd.setLocationRelativeTo(this);
             pmd.setVisible(true);
-            Preset p = pmd.getSelectedPreset();
-            if (p != null) {
-                setSpinners(p);
+            Preset preset = pmd.getSelectedPreset();
+            if (preset != null) {
+                setSpinners(preset);
+                setTitle("Timer - " + preset.toString());
             } else {
                 log.debug("Preset not selected");
             }
@@ -172,18 +171,15 @@ public class MainWindow extends JFrame implements TimerFrame {
 
     private void setDorkBox() {
         SystemTray tray = SystemTray.get("Timer");
-        tray.setImage(getClass().getResource("/images/pngegg.png"));
-        
-        
+        tray.setImage(getClass().getResource(ICON_FILE));
 
         JMenu trayMenu = new JMenu();
         JMenuItem mw = new JMenuItem("Main window");
         mw.addMouseListener(new MouseAdapter() {
-            
-            
+
         });
         mw.addActionListener(e -> {
-            
+
             toggleWindow();
         });
         trayMenu.add(mw);
@@ -194,17 +190,17 @@ public class MainWindow extends JFrame implements TimerFrame {
                 if (e.getButton() == MouseEvent.BUTTON1) {
                     System.out.println("Kliknuto levym");
                 }
-                
+
                 if (e.getButton() == MouseEvent.BUTTON2) {
                     System.out.println("Kliknuto pravym");
                 }
             }
-            
-            
+
         });
         tray.setMenu(trayMenu);
 
     }
+    
 
     private void toggleWindow() {
         setVisible(!isVisible());
@@ -241,6 +237,12 @@ public class MainWindow extends JFrame implements TimerFrame {
             stopTimer();
         }
     }
+    
+    @Override
+    public void resetSpinners() {
+        setSpinners(new Preset(null,0,0,0));
+        setTitle("Timer");
+    }
 
     @Override
     public void setSpinners(Preset preset) {
@@ -275,7 +277,9 @@ public class MainWindow extends JFrame implements TimerFrame {
     @Override
     public void startTimer() {
         if (!isTimerZero()) {
-            setTitle("Timer - " + getSpinnerValues());
+            if (getTitle().equals("Timer")) {
+                setTitle("Timer - " + getSpinnerValues());
+            }
             timer.start();
             timeDirection = TimeDirection.DOWN;
             if (TimerPreferences.is("minimize", true)) {
@@ -291,9 +295,9 @@ public class MainWindow extends JFrame implements TimerFrame {
         timer.stop();
         actionManager.setCurrentState(AppState.STOPPED);
     }
-    
+
     private String getSpinnerValues() {
-        return hourSpinner.getValue() + ":" + minuteSpinner.getValue() + ":" + secondSpinner.getValue(); 
+        return hourSpinner.getValue() + ":" + minuteSpinner.getValue() + ":" + secondSpinner.getValue();
     }
 
 }
