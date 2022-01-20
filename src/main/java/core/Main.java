@@ -28,8 +28,8 @@ public class Main {
     public static void main(String[] args) {
         PresetManager pm = new PresetManager();
         FlatDarkLaf.setup();
-        MainWindow mw = new MainWindow(pm);
         SwingUtilities.invokeLater(() -> {
+            MainWindow mw = new MainWindow(pm);
             mw.setVisible(true);
         });
 
