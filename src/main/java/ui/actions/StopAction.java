@@ -17,6 +17,7 @@ package ui.actions;
 
 import java.awt.event.ActionEvent;
 import static javax.swing.Action.NAME;
+import javax.swing.JFrame;
 import org.atrament.ManagedAction;
 import ui.MainWindow;
 
@@ -26,7 +27,7 @@ import ui.MainWindow;
  */
 public class StopAction extends ManagedAction {
 
-    public StopAction(MainWindow mw) {
+    public StopAction(JFrame mw) {
         super(mw);
         initComponent();
     }

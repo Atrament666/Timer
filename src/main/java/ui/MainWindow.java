@@ -49,10 +49,12 @@ import net.miginfocom.swing.MigLayout;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import core.TimerPreferences;
+import dorkbox.systemTray.Menu;
+import dorkbox.systemTray.MenuItem;
 import dorkbox.systemTray.SystemTray;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.Image;
 import java.io.BufferedInputStream;
+import javax.swing.ImageIcon;
 import org.atrament.ActionManager;
 import org.atrament.ManagedAction;
 import ui.actions.ExitAction;
@@ -102,7 +104,7 @@ public class MainWindow extends JFrame implements TimerFrame {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                super.windowClosing(e); 
+                super.windowClosing(e);
                 setExtendedState(JFrame.ICONIFIED);
             }
 
@@ -110,8 +112,7 @@ public class MainWindow extends JFrame implements TimerFrame {
         setMenu();
         setDorkBox();
 
-        actionManager.setMainWindow(this);
-
+        //actionManager.setMainWindow(this);
         hourSpinner = new TimerSpinner(23);
         minuteSpinner = new TimerSpinner(59);
         secondSpinner = new TimerSpinner(59);
@@ -170,37 +171,17 @@ public class MainWindow extends JFrame implements TimerFrame {
     }
 
     private void setDorkBox() {
-        SystemTray tray = SystemTray.get("Timer");
-        tray.setImage(getClass().getResource(ICON_FILE));
+        SystemTray tray = SystemTray.get();
+        Image icon = new ImageIcon(getClass().getResource(ICON_FILE)).getImage();
+        tray.setImage(icon);
 
-        JMenu trayMenu = new JMenu();
-        JMenuItem mw = new JMenuItem("Main window");
-        mw.addMouseListener(new MouseAdapter() {
-
-        });
-        mw.addActionListener(e -> {
-
+        Menu trayMenu = tray.getMenu();
+        trayMenu.add(new MenuItem("Main window", (e) -> {
             toggleWindow();
-        });
-        trayMenu.add(mw);
-        trayMenu.add(actionManager.getAction(ExitAction.class));
-        trayMenu.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                if (e.getButton() == MouseEvent.BUTTON1) {
-                    System.out.println("Kliknuto levym");
-                }
+        }));
 
-                if (e.getButton() == MouseEvent.BUTTON2) {
-                    System.out.println("Kliknuto pravym");
-                }
-            }
-
-        });
-        tray.setMenu(trayMenu);
-
+        trayMenu.add(new JMenuItem(actionManager.getAction(ExitAction.class)));
     }
-    
 
     private void toggleWindow() {
         setVisible(!isVisible());
@@ -237,10 +218,10 @@ public class MainWindow extends JFrame implements TimerFrame {
             stopTimer();
         }
     }
-    
+
     @Override
     public void resetSpinners() {
-        setSpinners(new Preset(null,0,0,0));
+        setSpinners(new Preset(null, 0, 0, 0));
         setTitle("Timer");
     }
 

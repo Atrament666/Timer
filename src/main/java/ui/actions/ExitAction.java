@@ -6,8 +6,8 @@ package ui.actions;
 
 import java.awt.event.ActionEvent;
 import static javax.swing.Action.NAME;
+import javax.swing.JFrame;
 import org.atrament.ManagedAction;
-import ui.MainWindow;
 
 /**
  *
@@ -15,7 +15,7 @@ import ui.MainWindow;
  */
 public class ExitAction extends ManagedAction {
 
-    public ExitAction(MainWindow mw) {
+    public ExitAction(JFrame mw) {
         super(mw);
         initComponent();
     }
